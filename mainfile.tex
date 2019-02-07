@@ -1,0 +1,229 @@
+\documentclass[12pt,letterpaper,oneside,final]{memoir}
+\usepackage[no-math]{fontspec}
+\usepackage{xltxtra}
+\setmainfont[Mapping=tex-text,Ligatures={Common}]{Linux Libertine O}
+\usepackage{xkeyval}
+\usepackage{polyglossia}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[rightcaption]{sidecap}
+\usepackage{float}
+\usepackage{url}
+\usepackage{type1cm}
+\usepackage[normalem]{ulem}
+%\usepackage{lettrine}
+%\usepackage{eurosym}
+\usepackage{siunitx}
+\usepackage{textcomp}
+%\usepackage{caption}
+\usepackage{makeidx}
+\setdefaultlanguage[variant=american]{english}
+\setotherlanguage[variant=ancient,numerals=arabic]{greek}
+\setotherlanguage[spelling=new]{german}
+\setotherlanguages{french,italian,spanish}
+\usepackage{csquotes}
+\usepackage{etoolbox,keyval,ifthen}
+\usepackage[backend=biber]{biblatex-chicago}  % change to biblatex, or ... 
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[series={},nocritical,noend,noeledsec,nofamiliar,noledgroup]{reledmac}
+\usepackage{reledpar}
+\setlength{\columnrulewidth}{0.4pt}
+\DeclareAutoCiteCommand{plain}{\textcite}{\textcites}
+\DeclareAutoCiteCommand{inline}{\textcite}{\textcites}
+\DeclareAutoCiteCommand{footnote}[l]{\footcite}{\footcites}
+\bibliography{masterbib}    % select bibliographic file
+\usepackage[final]{hyperref}
+\hypersetup{bookmarks=false,  % show bookmarks bar?
+    unicode=true,             % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,          % show Acrobat’s toolbar?
+    pdfmenubar=true,          % show Acrobat’s menu?
+    pdffitwindow=false,       % window fit to page when opened
+    pdfstartview={FitH},      % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},             % author name
+    pdfsubject={Ph.D. Dissertation},   % subject of the document
+    pdfcreator={},            % creator of the document
+    pdfproducer={},           % producer of the document
+    pdfkeywords={Mantua, History of Medicine, History of Political Thought, Italian Literature, Renaissance}, % list of keywords
+    pdfnewwindow=true,        % links in new window
+    colorlinks=true,          % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,          % color of links to bibliography
+    filecolor=black,          % color of file links
+    urlcolor=black            % color of external links
+}
+\usepackage{microtype}
+\usepackage{xecolor}
+\definergbcolor{blue}{0000FF}
+\definergbcolor{red}{FF0000} %\textxecolor{colorname}{text}
+\XeTeXdashbreakstate=1
+\usepackage{indentfirst}
+\usepackage{outline}
+\usepackage{verbatim}
+\usepackage{enumerate}
+\usepackage{longtable}
+\usepackage{ccicons}
+\usepackage{bookmark}
+\usepackage{etoolbox}
+\usepackage{lscape}
+\epigraphfontsize{\small\itshape}
+\setlength\epigraphwidth{8cm}
+\setlength\epigraphrule{0pt}
+
+%!%%%%%%%%%%%%%%%%%%%%%for non-italicized headings%%%%%
+% http://tex.stackexchange.com/questions/32655/remove-italic-from-memoir-headings-pagestyle
+\makeevenhead{headings}{\leftmark}{}{}
+\makeoddhead{headings}{\rightmark}{}{}
+\makeevenfoot{headings}{}{\thepage}{}
+\makeoddfoot{headings}{}{\thepage}{}
+
+%!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%!%%%%%%%%%%%%%%%%%%%%%for margins, l=1.5; rest=1.0, maybe add 0.1in%%%%%
+\setstocksize{11in}{8.5in}
+\settrimmedsize{11.0in}{8.5in}{*} %\settrimmedsize{ height }{ width }{ ratio }
+\settypeblocksize{7.75in}{5.8in}{*} %\settypeblocksize{ height }{ width }{ ratio } %note: 7.25h gives margins of 1.5 on top/bottom w/ ubratio of 1
+\setlrmargins{1.5in}{*}{*} %\setlrmargins{ spine }{ edge }{ ratio } %spine = left, edge = right; only answer one or two of these values
+%\setlrmarginsandblock{1.5in}{1.0in}{*} %\setlrmarginsandblock{ spine }{ edge }{ ratio } %
+%\setulmargins{*}{*}{*} %\setulmargins{ upper }{ lower }{ ratio }
+%\setulmarginsandblock{0.5in}{*}{*} %\setulmarginsandblock{ upper }{ lower }{ ratio }
+%\setheadfoot{*}{*} %\setheadfoot{ headheight }{ footskip }
+%\setheaderspaces{1.0in}{*}{*} %\setheaderspaces{ headdrop }{ headsep }{ ratio }
+%\checkandfixthelayout[lines]
+\flushbottom
+%!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
+
+\setsecnumdepth{subparagraph}
+\makeatletter
+\renewcommand\@makefntext{\hspace*{2em}\@thefnmark. }
+\newenvironment*{singlespcquote}
+        {\quote\SingleSpacing}
+        {\endquote}
+\SetBlockThreshold{0}
+\SetBlockEnvironment{singlespcquote}
+\SetCiteCommand{\parencite} %default is \cite
+\makeindex
+
+%%%%%%%%%
+
+\begin{document}
+\fussy
+\vbadness=10000 % badness above which bad vboxes are shown. (Default = 10000?)
+\frontmatter
+\hyphenation{}
+\DoubleSpacing
+\begin{center}
+\thispagestyle{empty}
+
+                          % insert title
+
+\vspace{20mm}
+by\\
+\vspace{10mm}
+                          % insert author name
+\vspace{10mm}
+A dissertation submitted in partial fulfillment\\
+of the requirements for the degree of\\
+Doctor of Philosophy\\
+Department of %name of department% \\
+New York University\\
+%month, year%
+\end{center}
+\vspace{35mm}
+\begin{flushright}
+{\rule[0pt]{45mm}{0.1mm}}\\
+
+Prof. %name of main adviser%
+
+\end{flushright}
+
+\newpage
+
+\thispagestyle{empty}
+
+\begin{center} © %author name% \\ All Rights Reserved, %year% \end{center}
+
+% Dedication %
+
+\newpage
+
+\thispagestyle{empty}
+
+\chapter{Dedication}
+
+\DoubleSpacing
+
+\newpage
+
+\chapter{Acknowledgments}
+% Insert Acknowlgements %
+\newpage
+\chapter{Abstract}
+\DoubleSpacing
+\noindent
+%Insert Abstract% \clearpage
+%\renewcommand*{\cftappendixname}{Appendix\space}
+%\renewcommand*{\contentsname}{Table of Contents}
+\setcounter{tocdepth}{2}% chapters and above
+%this removes TOC listing from TOC
+\begin{KeepFromToc}
+\tableofcontents
+\end{KeepFromToc}
+\clearpage
+\newpage
+\clearpage
+\listoffigures
+\chapter{List of Abbreviations}
+\SingleSpacing
+\begin{longtable}{ll}
+%examples of abreviations%
+\emph{ASFi} & Archivio di Stato di Firenze\\
+\emph{ASMn} & Archivio di Stato di Mantova\\
+\end{longtable}
+\clearpage
+% A list of appendices is usually required by GSAS %
+\listofappendices
+\DoubleSpacing
+\mainmatter
+\clearpage
+\cleardoublepage  
+\phantomsection
+\chapter[Introduction]{Introduction}
+\input{Chapters/Introduction}
+\chapter{} %chapter name
+\input{Chapters/Chapter1.tex}
+\chapter{} %chapter name
+\input{Chapters/Chapter2.tex}    
+\chapter{} %chapter name
+\input{Chapters/Chapter3.tex}
+\chapter{} %chapter name
+\input{Chapters/Chapter4.tex}
+\chapter[Conclusion]{Conclusion}
+\input{Chapters/Conclusion.tex}
+%%%%%%%% Appendices %%%%%%%%%%%%%
+\begin{appendices}
+\chapter{Letters} 
+\input{Appendices/AppendixA}
+\chapter{} %name of Appendix A
+\input{Appendices/AppendixB}
+\chapter{} %name of Appendix B
+\input{Appendices/AppendixC.tex}
+\chapter{} %name of Appendix C
+\input{Appendices/AppendixD.tex}
+\chapter{} %name of Appendix D
+\end{appendices} 
+\newpage
+% when citing classic works, you may need to follow a specific style. /nocite allows you to ...
+\nocite{celsus1953,maximus2000,tacitus2003,seneca1928,pliny1963,plato1926,quintilianus2001}
+\clearpage
+
+\backmatter
+
+\begin{OnehalfSpace}
+\setlength{\bibitemsep}{\onelineskip}
+\chapter{Bibliography}
+\input{Bibliography/bibliography.tex}
+\printindex
+\end{OnehalfSpace}
+\end{document}
