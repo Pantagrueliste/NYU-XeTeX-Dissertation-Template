@@ -8,7 +8,7 @@ This XeTeX template is designed for New York University doctoral candidates whos
 
 2. You work in the humanities? Scholars in the humanities have specific needs, such as unicode compatibility, multilingual support, and advanced typographic features. This template is intended to address all of these needs.
 
-3. NYU GSAS expects a separate list of appendices. This template complies with this requirement, adapting the table of contents to prevent any redundancy.    
+3. NYU GSAS expects a separate list of appendices. This template complies with this requirement, adapting the table of contents to prevent redundancies.    
 
 ### Things you need to verify before using this template
 
