@@ -1,18 +1,25 @@
 ## NYU-XeTeX-Dissertation-Template
+
 This XeTeX template is designed for New York University doctoral candidates whose dissertation needs to comply with the strict [formatting guidelines](http://gsas.nyu.edu/content/dam/nyu-as/gsas/documents/dissertationsubmissionrelated/Doctoral%20Dissertation%20Formatting%20Requirements%2010-09-15.pdf "formatting guidelines") of the Graduate School of Arts and Sciences. 
 
 ### Why is this template helpful
+
 1. You're a busy Ph.D. candidate? Chances are you don't want to waste time with Byzantine format requirements.
+
 2. You work in the humanities? Scholars in the humanities have specific needs, such as unicode compatibility, multilingual support, and advanced typographic features. This template is intended to address all of these needs.
+
 3. NYU GSAS requires a separate list of appendices. This template obeys NYU orders, adapting the table of contents to prevent redundancies.    
 
 ### Things you need to verify before using this template
+
 1. Your adviser is ready and willing to work in a format that is fundamentally incompatible with Microsoft Word.
   * You can use pandoc to convert a LaTeX file into a .docx, but you will not be able to track changes.
   * You can try using diff to compare two .pdf files, but chances are that your adviser neither has the remotest idea of how this might work, nor the time and/or will to learn.
+
 2. NYU GSAS has not amended its formatting rules since the creation of this template.
   * If they do, please send me a message.
-3. Last but not the least, I highly recommended the use Git to keep track of changes.
+
+3. You keep track of changes using Git and you:
   * Write one sentence per line
   * Divide your dissertation in multiple files.
   * Send commits without moderation.
