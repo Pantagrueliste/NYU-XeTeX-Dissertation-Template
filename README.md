@@ -1,10 +1,10 @@
 ## NYU-XeTeX-Dissertation-Template
-This XeTeX template is designed for doctoral dissertations that need to comply with the strict [formatting guidelines](http://gsas.nyu.edu/content/dam/nyu-as/gsas/documents/dissertationsubmissionrelated/Doctoral%20Dissertation%20Formatting%20Requirements%2010-09-15.pdf "formatting guidelines") of the Graduate School of Arts and Sciences at New York University. 
+This XeTeX template is designed for New York University doctoral candidates whose dissertation needs to comply with the strict [formatting guidelines](http://gsas.nyu.edu/content/dam/nyu-as/gsas/documents/dissertationsubmissionrelated/Doctoral%20Dissertation%20Formatting%20Requirements%2010-09-15.pdf "formatting guidelines") of the Graduate School of Arts and Sciences. 
 
 ### Why is this template helpful
 1. You're a busy Ph.D. candidate? Chances are you don't want to waste time with Byzantine format requirements.
-2. You work in the humanities? Scholars in the humanities have specific needs, and this template is tries to address many of them, including unicode compatibility, multilingual support, and advanced typographic features.
-3. This template also makes the required inclusion of a separate list of appendices---and its consequent exclusion from the table of contents---possible.  
+2. You work in the humanities? Scholars in the humanities have specific needs, such as unicode compatibility, multilingual support, and advanced typographic features. This template is intended to address all of these needs.
+3. NYU GSAS requires a separate list of appendices. This template obeys NYU orders, adapting the table of contents to prevent redundancies.    
 
 ### Things you need to verify before using this template
 1. Your adviser is ready and willing to work in a format that is fundamentally incompatible with Microsoft Word.
