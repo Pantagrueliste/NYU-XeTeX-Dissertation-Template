@@ -11,11 +11,8 @@
 \usepackage{url}
 \usepackage{type1cm}
 \usepackage[normalem]{ulem}
-%\usepackage{lettrine}
-%\usepackage{eurosym}
 \usepackage{siunitx}
 \usepackage{textcomp}
-%\usepackage{caption}
 \usepackage{makeidx}
 \setdefaultlanguage[variant=american]{english}
 \setotherlanguage[variant=ancient,numerals=arabic]{greek}
@@ -23,7 +20,7 @@
 \setotherlanguages{french,italian,spanish}
 \usepackage{csquotes}
 \usepackage{etoolbox,keyval,ifthen}
-\usepackage[backend=biber]{biblatex-chicago}  % change to biblatex, or ... 
+\usepackage[backend=biber]{biblatex-chicago}  % set to biblatex-chicago 
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage[series={},nocritical,noend,noeledsec,nofamiliar,noledgroup]{reledmac}
@@ -32,7 +29,7 @@
 \DeclareAutoCiteCommand{plain}{\textcite}{\textcites}
 \DeclareAutoCiteCommand{inline}{\textcite}{\textcites}
 \DeclareAutoCiteCommand{footnote}[l]{\footcite}{\footcites}
-\bibliography{masterbib}    % select bibliographic file
+\bibliography{Bibliography/masterbib}    % select bibliographic file
 \usepackage[final]{hyperref}
 \hypersetup{bookmarks=false,  % show bookmarks bar?
     unicode=true,             % non-Latin characters in Acrobat’s bookmarks
@@ -40,12 +37,12 @@
     pdfmenubar=true,          % show Acrobat’s menu?
     pdffitwindow=false,       % window fit to page when opened
     pdfstartview={FitH},      % fits the width of the page to the window
-    pdftitle={},
+    pdftitle={},			  % Pdf Title
     pdfauthor={},             % author name
-    pdfsubject={Ph.D. Dissertation},   % subject of the document
+    pdfsubject={},			  % subject of the document
     pdfcreator={},            % creator of the document
     pdfproducer={},           % producer of the document
-    pdfkeywords={Mantua, History of Medicine, History of Political Thought, Italian Literature, Renaissance}, % list of keywords
+    pdfkeywords={},			  % list of keywords
     pdfnewwindow=true,        % links in new window
     colorlinks=true,          % false: boxed links; true: colored links
     linkcolor=black,          % color of internal links
@@ -71,15 +68,14 @@
 \setlength\epigraphwidth{8cm}
 \setlength\epigraphrule{0pt}
 
-%!%%%%%%%%%%%%%%%%%%%%%for non-italicized headings%%%%%
+%!%%%%%%%%%%%%%%%%%%%%% for non-italicized headings %%%%%%%%%%%%%%%%%%%%%%%%%
 % http://tex.stackexchange.com/questions/32655/remove-italic-from-memoir-headings-pagestyle
 \makeevenhead{headings}{\leftmark}{}{}
 \makeoddhead{headings}{\rightmark}{}{}
 \makeevenfoot{headings}{}{\thepage}{}
 \makeoddfoot{headings}{}{\thepage}{}
 
-%!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%!%%%%%%%%%%%%%%%%%%%%%for margins, l=1.5; rest=1.0, maybe add 0.1in%%%%%
+%!%%%%%%%%%%%%%%%%%%%%%%%%%%%% Margins %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setstocksize{11in}{8.5in}
 \settrimmedsize{11.0in}{8.5in}{*} %\settrimmedsize{ height }{ width }{ ratio }
 \settypeblocksize{7.75in}{5.8in}{*} %\settypeblocksize{ height }{ width }{ ratio } %note: 7.25h gives margins of 1.5 on top/bottom w/ ubratio of 1
@@ -91,9 +87,9 @@
 %\setheaderspaces{1.0in}{*}{*} %\setheaderspaces{ headdrop }{ headsep }{ ratio }
 %\checkandfixthelayout[lines]
 \flushbottom
-%!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
+%!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 \setsecnumdepth{subparagraph}
 \makeatletter
 \renewcommand\@makefntext{\hspace*{2em}\@thefnmark. }
@@ -103,11 +99,45 @@
 \SetBlockThreshold{0}
 \SetBlockEnvironment{singlespcquote}
 \SetCiteCommand{\parencite} %default is \cite
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices Macro %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\g@addto@macro{\appendices}{%
+  \appendix
+  \appendixpage
+  \write\@auxout{%
+    \string\let\string\latex@tf@toc\string\tf@toc% Store the original `\tf@lof` file handle
+    \string\let\string\tf@toc\string\tf@app% 
+  }%
+}
+
+
+\g@addto@macro{\endappendices}{%
+  \write\@auxout{%
+    \string\let\string\tf@toc\string\latex@tf@toc% Rename the file handle
+  }%
+}
+
+\newcommand{\appendicesname}{Appendices}
+
+\newcommand{\listofappendices}{\bgroup%
+  \renewcommand\contentsname{List of Appendices}
+  \let\@startoc@temp\@starttoc%
+  \def\@starttoc##1{\@startoc@temp{app}}%
+  \clearpage
+  \tableofcontents* \egroup
+}
+
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \makeindex
 
-%%%%%%%%%
 
 \begin{document}
+
 \fussy
 \vbadness=10000 % badness above which bad vboxes are shown. (Default = 10000?)
 \frontmatter
@@ -142,9 +172,10 @@ Prof. %name of main adviser%
 
 \thispagestyle{empty}
 
-\begin{center} © %author name% \\ All Rights Reserved, %year% \end{center}
+\begin{center} © %author name% \\ All Rights Reserved, %year% 
+\end{center}
 
-% Dedication %
+%%%%%%%%%%%%%%% Dedication %%%%%%%%%%%%%%%%%
 
 \newpage
 
@@ -156,66 +187,96 @@ Prof. %name of main adviser%
 
 \newpage
 
+%%%%%%%%%%%% Acknowledgements %%%%%%%%%%%%%%
+
 \chapter{Acknowledgments}
-% Insert Acknowlgements %
+
+% Insert Acknowledgements here %
+
 \newpage
+
+%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%
+
 \chapter{Abstract}
 \DoubleSpacing
 \noindent
-%Insert Abstract% \clearpage
-%\renewcommand*{\cftappendixname}{Appendix\space}
-%\renewcommand*{\contentsname}{Table of Contents}
-\setcounter{tocdepth}{2}% chapters and above
+%Insert Abstract% 
+
+\clearpage
+
+%%%%%%%%%%%% Table of Contents %%%%%%%%%%%%%
+
+\setcounter{tocdepth}{2} % chapters and above
 %this removes TOC listing from TOC
+
 \begin{KeepFromToc}
 \tableofcontents
 \end{KeepFromToc}
+
 \clearpage
+
 \newpage
+
 \clearpage
+
+%%%%%%%%%%%% List of Figures %%%%%%%%%%%%%%
+
 \listoffigures
+
+%%%%%%%%% List of Abbreviations %%%%%%%%%%%
+
 \chapter{List of Abbreviations}
+
 \SingleSpacing
+
 \begin{longtable}{ll}
-%examples of abreviations%
-\emph{ASFi} & Archivio di Stato di Firenze\\
-\emph{ASMn} & Archivio di Stato di Mantova\\
+
+\emph{ASFi} & Archivio di Stato di Firenze\\ %example of abbreviation
+\emph{ASMn} & Archivio di Stato di Mantova\\ %example of abbreviation
 \end{longtable}
+
 \clearpage
-% A list of appendices is usually required by GSAS %
-\listofappendices
+
+%%%%%%%%% List of Appendices %%%%%%%%%%%
+% to deactivate the list of appendices, make sure to delete the macro above.
+
+\listofappendices%
 \DoubleSpacing
 \mainmatter
 \clearpage
 \cleardoublepage  
 \phantomsection
+
 \chapter[Introduction]{Introduction}
 \input{Chapters/Introduction}
-\chapter{} %chapter name
+\chapter{first chapter} %chapter name
 \input{Chapters/Chapter1.tex}
-\chapter{} %chapter name
+\chapter{second chapter} %chapter name
 \input{Chapters/Chapter2.tex}    
-\chapter{} %chapter name
+\chapter{third chapter} %chapter name
 \input{Chapters/Chapter3.tex}
-\chapter{} %chapter name
+\chapter{fourth chapter} %chapter name
 \input{Chapters/Chapter4.tex}
 \chapter[Conclusion]{Conclusion}
 \input{Chapters/Conclusion.tex}
-%%%%%%%% Appendices %%%%%%%%%%%%%
-\begin{appendices}
-\chapter{Letters} 
+
+
+%%%%%%%%%%% Appendices %%%%%%%%%%%%%
+
+\begin{appendices} 
+\chapter{Appendix A} %name of Appendix A 
 \input{Appendices/AppendixA}
-\chapter{} %name of Appendix A
+\chapter{Appendix B} %name of Appendix B
 \input{Appendices/AppendixB}
-\chapter{} %name of Appendix B
-\input{Appendices/AppendixC.tex}
-\chapter{} %name of Appendix C
-\input{Appendices/AppendixD.tex}
-\chapter{} %name of Appendix D
+\chapter{Appendix C} %name of Appendix C
+\input{Appendices/AppendixC}
+\chapter{Appendix D} %name of Appendix D
+\input{Appendices/AppendixD}
 \end{appendices} 
+
 \newpage
 % when citing classic works, you may need to follow a specific style. /nocite allows you to ...
-\nocite{celsus1953,maximus2000,tacitus2003,seneca1928,pliny1963,plato1926,quintilianus2001}
+%\nocite{celsus1953,maximus2000,tacitus2003,seneca1928,pliny1963,plato1926,quintilianus2001}
 \clearpage
 
 \backmatter
