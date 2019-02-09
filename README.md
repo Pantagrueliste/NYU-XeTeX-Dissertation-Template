@@ -2,7 +2,7 @@
 
 This XeTeX template is designed for New York University doctoral candidates whose dissertation needs to comply with the strict [formatting guidelines](http://gsas.nyu.edu/content/dam/nyu-as/gsas/documents/dissertationsubmissionrelated/Doctoral%20Dissertation%20Formatting%20Requirements%2010-09-15.pdf "formatting guidelines") of the Graduate School of Arts and Sciences. 
 
-### Why is this template helpful
+### Why this template is helpful
 
 1. You're a busy Ph.D. candidate? Chances are you don't want to waste time with Byzantine format requirements.
 
