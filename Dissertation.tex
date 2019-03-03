@@ -8,33 +8,32 @@
 \usepackage{textcomp} %special fonts
 \usepackage{makeidx} 
 \usepackage{polyglossia}
-\setdefaultlanguage[variant=american]{english} %change this line to select a different default language
+\setdefaultlanguage[variant=american]{english} %change this line to select a different default language, add other languages below:
 %\setotherlanguage[variant=ancient,numerals=arabic]{greek}
 %\setotherlanguage[spelling=new]{german}
 %\setotherlanguages{french,italian,spanish}
 \usepackage{csquotes} %particularly useful in multilingual documents
 \usepackage[backend=biber]{biblatex-chicago}  % Bibliography style is set to biblatex-chicago, chage this line to select a different style
 \usepackage{booktabs} %makes better tables
-\usepackage[series={},nocritical,noend,noeledsec,nofamiliar,noledgroup]{reledmac} %useful for criticasl editions
-\usepackage{reledpar}%allows you to display text in parallel
+\usepackage[series={},nocritical,noend,noeledsec,nofamiliar,noledgroup]{reledmac} %useful for critical editions
+\usepackage{reledpar} %allows you to display text in parallel
 \setlength{\columnrulewidth}{0.4pt}
-\DeclareAutoCiteCommand{plain}{\textcite}{\textcites}
-\DeclareAutoCiteCommand{inline}{\textcite}{\textcites}
-\DeclareAutoCiteCommand{footnote}[l]{\footcite}{\footcites}
-\bibliography{Bibliography/masterbib}    % select bibliographic file
-\usepackage[final]{hyperref}
-\hypersetup{bookmarks=false,  % show bookmarks bar?
+\bibliography{Bibliography/bibliography} %path to your bilbiographic database
+\usepackage[final]{hyperref} %create hyperlinks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% PDF document setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{bookmarks=false,  % show bookmarks bar
     unicode=true,             % non-Latin characters in Acrobat’s bookmarks
-    pdftoolbar=true,          % show Acrobat’s toolbar?
-    pdfmenubar=true,          % show Acrobat’s menu?
+    pdftoolbar=true,          % show Acrobat’s toolbar
+    pdfmenubar=true,          % show Acrobat’s menu
     pdffitwindow=false,       % window fit to page when opened
     pdfstartview={FitH},      % fits the width of the page to the window
-    pdftitle={},			  % Pdf Title
+    pdftitle={},			        % Pdf Title
     pdfauthor={},             % author name
-    pdfsubject={},			  % subject of the document
+    pdfsubject={},			      % subject of the document
     pdfcreator={},            % creator of the document
     pdfproducer={},           % producer of the document
-    pdfkeywords={},			  % list of keywords
+    pdfkeywords={},			      % list of keywords
     pdfnewwindow=true,        % links in new window
     colorlinks=true,          % false: boxed links; true: colored links
     linkcolor=black,          % color of internal links
@@ -42,45 +41,28 @@
     filecolor=black,          % color of file links
     urlcolor=black            % color of external links
 }
-\usepackage{microtype}
-\usepackage{xecolor}
-\definergbcolor{blue}{0000FF}
-\definergbcolor{red}{FF0000} %\textxecolor{colorname}{text}
-\XeTeXdashbreakstate=1
-\usepackage{indentfirst}
-\usepackage{outline}
-\usepackage{verbatim}
-\usepackage{enumerate}
-\usepackage{longtable}
-\usepackage{ccicons}
-\usepackage{bookmark}
-\usepackage{etoolbox}
-\usepackage{lscape}
+\usepackage{microtype} %Useful mi­cro-ty­po­graphic ex­ten­sions for the humanities
+\usepackage{ccicons} %copyright icons
+\usepackage{longtable} %long tables with footnotes
+\usepackage{etoolbox} %See "line-breaking in footnotes" section
 \epigraphfontsize{\small\itshape}
 \setlength\epigraphwidth{8cm}
 \setlength\epigraphrule{0pt}
 
-%!%%%%%%%%%%%%%%%%%%%%% for non-italicized headings %%%%%%%%%%%%%%%%%%%%%%%%%
-% http://tex.stackexchange.com/questions/32655/remove-italic-from-memoir-headings-pagestyle
+%%%%%%%%%%%%%%%%%%%%%%%%% Removes italic headings %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeevenhead{headings}{\leftmark}{}{}
 \makeoddhead{headings}{\rightmark}{}{}
 \makeevenfoot{headings}{}{\thepage}{}
 \makeoddfoot{headings}{}{\thepage}{}
 
-%!%%%%%%%%%%%%%%%%%%%%%%%%%%%% Margins %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Margins %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setstocksize{11in}{8.5in}
-\settrimmedsize{11.0in}{8.5in}{*} %\settrimmedsize{ height }{ width }{ ratio }
-\settypeblocksize{7.75in}{5.8in}{*} %\settypeblocksize{ height }{ width }{ ratio } %note: 7.25h gives margins of 1.5 on top/bottom w/ ubratio of 1
-\setlrmargins{1.5in}{*}{*} %\setlrmargins{ spine }{ edge }{ ratio } %spine = left, edge = right; only answer one or two of these values
-%\setlrmarginsandblock{1.5in}{1.0in}{*} %\setlrmarginsandblock{ spine }{ edge }{ ratio } %
-%\setulmargins{*}{*}{*} %\setulmargins{ upper }{ lower }{ ratio }
-%\setulmarginsandblock{0.5in}{*}{*} %\setulmarginsandblock{ upper }{ lower }{ ratio }
-%\setheadfoot{*}{*} %\setheadfoot{ headheight }{ footskip }
-%\setheaderspaces{1.0in}{*}{*} %\setheaderspaces{ headdrop }{ headsep }{ ratio }
-%\checkandfixthelayout[lines]
+\settrimmedsize{11.0in}{8.5in}{*}   
+\settypeblocksize{7.75in}{5.8in}{*} 
+\setlrmargins{1.5in}{*}{*}         
 \flushbottom
-%!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%line-breaking in footnotes%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 \setsecnumdepth{subparagraph}
 \makeatletter
@@ -92,7 +74,6 @@
 \SetBlockEnvironment{singlespcquote}
 \SetCiteCommand{\parencite} %default is \cite
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices Macro %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter
 \g@addto@macro{\appendices}{%
@@ -103,7 +84,6 @@
     \string\let\string\tf@toc\string\tf@app% 
   }%
 }
-
 
 \g@addto@macro{\endappendices}{%
   \write\@auxout{%
@@ -138,12 +118,14 @@
 \begin{center}
 \thispagestyle{empty}
 
-                          % insert title
+Dissertation title 
 
 \vspace{20mm}
 by\\
 \vspace{10mm}
-                          % insert author name
+
+Dissertation's author
+
 \vspace{10mm}
 A dissertation submitted in partial fulfillment\\
 of the requirements for the degree of\\
@@ -167,7 +149,7 @@ Prof. %name of main adviser%
 \begin{center} © %author name% \\ All Rights Reserved, %year% 
 \end{center}
 
-%%%%%%%%%%%%%%% Dedication %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%% Dedication %%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 
@@ -179,7 +161,7 @@ Prof. %name of main adviser%
 
 \newpage
 
-%%%%%%%%%%%% Acknowledgements %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgements %%%%%%%%%%%%%%%%%%%%
 
 \chapter{Acknowledgments}
 
@@ -187,7 +169,7 @@ Prof. %name of main adviser%
 
 \newpage
 
-%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Abstract}
 \DoubleSpacing
@@ -196,7 +178,7 @@ Prof. %name of main adviser%
 
 \clearpage
 
-%%%%%%%%%%%% Table of Contents %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% Table of Contents %%%%%%%%%%%%%%%%%
 
 \setcounter{tocdepth}{2} % chapters and above
 %this removes TOC listing from TOC
@@ -211,11 +193,11 @@ Prof. %name of main adviser%
 
 \clearpage
 
-%%%%%%%%%%%% List of Figures %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% List of Figures %%%%%%%%%%%%%%%%%%%
 
 \listoffigures
 
-%%%%%%%%% List of Abbreviations %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% List of Abbreviations %%%%%%%%%%%%%%%
 
 \chapter{List of Abbreviations}
 
@@ -229,7 +211,7 @@ Prof. %name of main adviser%
 
 \clearpage
 
-%%%%%%%%% List of Appendices %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% List of Appendices %%%%%%%%%%%%%%%%%%%
 % to deactivate the list of appendices, make sure to delete the macro above.
 
 \listofappendices%
@@ -253,7 +235,7 @@ Prof. %name of main adviser%
 \input{Chapters/Conclusion.tex}
 
 
-%%%%%%%%%%% Appendices %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{appendices} 
 \chapter{Appendix A} %name of Appendix A 
@@ -272,7 +254,7 @@ Prof. %name of main adviser%
 
 \backmatter
 
-%%%%%%%%%%% Bibliography %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{OnehalfSpace}
 \setlength{\bibitemsep}{\onelineskip}
