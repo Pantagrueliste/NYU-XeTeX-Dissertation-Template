@@ -1,30 +1,22 @@
 \documentclass[12pt,letterpaper,oneside,final]{memoir}
 \usepackage[no-math]{fontspec}
 \usepackage{xltxtra}
-\setmainfont[Mapping=tex-text,Ligatures={Common}]{Linux Libertine O}
-\usepackage{xkeyval}
-\usepackage{polyglossia}
+\setmainfont[Mapping=tex-text,Ligatures={Common}]{Linux Libertine O} % Change this line to select a different font 
 \usepackage{graphicx}
 \graphicspath{ {images/} }
-\usepackage[rightcaption]{sidecap}
-\usepackage{float}
-\usepackage{url}
-\usepackage{type1cm}
-\usepackage[normalem]{ulem}
-\usepackage{siunitx}
-\usepackage{textcomp}
-\usepackage{makeidx}
-\setdefaultlanguage[variant=american]{english}
-\setotherlanguage[variant=ancient,numerals=arabic]{greek}
-\setotherlanguage[spelling=new]{german}
-\setotherlanguages{french,italian,spanish}
-\usepackage{csquotes}
-\usepackage{etoolbox,keyval,ifthen}
-\usepackage[backend=biber]{biblatex-chicago}  % set to biblatex-chicago 
-\usepackage{booktabs}
-\usepackage{array}
-\usepackage[series={},nocritical,noend,noeledsec,nofamiliar,noledgroup]{reledmac}
-\usepackage{reledpar}
+\usepackage{siunitx} %useful for scientific typesetting
+\usepackage{textcomp} %special fonts
+\usepackage{makeidx} 
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=american]{english} %change this line to select a different default language
+%\setotherlanguage[variant=ancient,numerals=arabic]{greek}
+%\setotherlanguage[spelling=new]{german}
+%\setotherlanguages{french,italian,spanish}
+\usepackage{csquotes} %particularly useful in multilingual documents
+\usepackage[backend=biber]{biblatex-chicago}  % Bibliography style is set to biblatex-chicago, chage this line to select a different style
+\usepackage{booktabs} %makes better tables
+\usepackage[series={},nocritical,noend,noeledsec,nofamiliar,noledgroup]{reledmac} %useful for criticasl editions
+\usepackage{reledpar}%allows you to display text in parallel
 \setlength{\columnrulewidth}{0.4pt}
 \DeclareAutoCiteCommand{plain}{\textcite}{\textcites}
 \DeclareAutoCiteCommand{inline}{\textcite}{\textcites}
