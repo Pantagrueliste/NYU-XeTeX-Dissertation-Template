@@ -1,266 +1,86 @@
+% Document class
 \documentclass[12pt,letterpaper,oneside,final]{memoir}
+
+% Packages and settings
 \usepackage[no-math]{fontspec}
 \usepackage{xltxtra}
-\setmainfont[Mapping=tex-text,Ligatures={Common}]{Linux Libertine O} % Change this line to select a different font 
 \usepackage{graphicx}
 \graphicspath{ {images/} }
-\usepackage{siunitx} %useful for scientific typesetting
-\usepackage{textcomp} %special fonts
-\usepackage{makeidx} 
+\usepackage{siunitx}
+\usepackage{textcomp}
+\usepackage{makeidx}
 \usepackage{polyglossia}
-\setdefaultlanguage[variant=american]{english} %change this line to select a different default language, add other languages below:
+\usepackage{csquotes}
+\usepackage[backend=biber]{biblatex-chicago}
+\usepackage{booktabs}
+\usepackage[series={},nocritical,noend,noeledsec,nofamiliar,noledgroup]{reledmac}
+\usepackage{reledpar}
+\usepackage[final]{hyperref}
+\usepackage{microtype}
+\usepackage{ccicons}
+\usepackage{longtable}
+\usepackage{etoolbox}
+
+% Font settings
+\setmainfont[Mapping=tex-text,Ligatures={Common}]{Linux Libertine O}
+
+% Language settings
+\setdefaultlanguage[variant=american]{english}
+% Add other languages if needed:
 %\setotherlanguage[variant=ancient,numerals=arabic]{greek}
 %\setotherlanguage[spelling=new]{german}
 %\setotherlanguages{french,italian,spanish}
-\usepackage{csquotes} %particularly useful in multilingual documents
-\usepackage[backend=biber]{biblatex-chicago}  % Bibliography style is set to biblatex-chicago, chage this line to select a different style
-\usepackage{booktabs} %makes better tables
-\usepackage[series={},nocritical,noend,noeledsec,nofamiliar,noledgroup]{reledmac} %useful for critical editions
-\usepackage{reledpar} %allows you to display text in parallel
-\setlength{\columnrulewidth}{0.4pt}
-\bibliography{Bibliography/bibliography} %path to your bilbiographic database
-\usepackage[final]{hyperref} %create hyperlinks
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% PDF document setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\hypersetup{bookmarks=false,  % show bookmarks bar
-    unicode=true,             % non-Latin characters in Acrobat’s bookmarks
-    pdftoolbar=true,          % show Acrobat’s toolbar
-    pdfmenubar=true,          % show Acrobat’s menu
-    pdffitwindow=false,       % window fit to page when opened
-    pdfstartview={FitH},      % fits the width of the page to the window
-    pdftitle={},			        % Pdf Title
-    pdfauthor={},             % author name
-    pdfsubject={},			      % subject of the document
-    pdfcreator={},            % creator of the document
-    pdfproducer={},           % producer of the document
-    pdfkeywords={},			      % list of keywords
-    pdfnewwindow=true,        % links in new window
-    colorlinks=true,          % false: boxed links; true: colored links
-    linkcolor=black,          % color of internal links
-    citecolor=black,          % color of links to bibliography
-    filecolor=black,          % color of file links
-    urlcolor=black            % color of external links
+% PDF document setup
+\hypersetup{
+    bookmarks=false,
+    unicode=true,
+    pdftoolbar=true,
+    pdfmenubar=true,
+    pdffitwindow=false,
+    pdfstartview={FitH},
+    pdftitle={}, % Add title
+    pdfauthor={}, % Add author name
+    pdfsubject={}, % Add subject
+    pdfcreator={}, % Add creator name
+    pdfproducer={}, % Add producer name
+    pdfkeywords={}, % Add keywords
+    pdfnewwindow=true,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black
 }
-\usepackage{microtype} %Useful mi­cro-ty­po­graphic ex­ten­sions for the humanities
-\usepackage{ccicons} %copyright icons
-\usepackage{longtable} %long tables with footnotes
-\usepackage{etoolbox} %See "line-breaking in footnotes" section
-\epigraphfontsize{\small\itshape}
-\setlength\epigraphwidth{8cm}
-\setlength\epigraphrule{0pt}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Removes italic headings %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\makeevenhead{headings}{\leftmark}{}{}
-\makeoddhead{headings}{\rightmark}{}{}
-\makeevenfoot{headings}{}{\thepage}{}
-\makeoddfoot{headings}{}{\thepage}{}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Margins %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Margins
 \setstocksize{11in}{8.5in}
 \settrimmedsize{11.0in}{8.5in}{*}   
 \settypeblocksize{7.75in}{5.8in}{*} 
 \setlrmargins{1.5in}{*}{*}         
 \flushbottom
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%line-breaking in footnotes%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Line-breaking in footnotes
 \apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 \setsecnumdepth{subparagraph}
 \makeatletter
 \renewcommand\@makefntext{\hspace*{2em}\@thefnmark. }
-\newenvironment*{singlespcquote}
-        {\quote\SingleSpacing}
-        {\endquote}
+\newenvironment*{singlespcquote}{\quote\SingleSpacing}{\endquote}
 \SetBlockThreshold{0}
 \SetBlockEnvironment{singlespcquote}
-\SetCiteCommand{\parencite} %default is \cite
+\SetCiteCommand{\parencite}
+\makeatother
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendices Macro %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Removes italic headings
+\makeevenhead{headings}{\leftmark}{}{}
+\makeoddhead{headings}{\rightmark}{}{}
+\makeevenfoot{headings}{}{\thepage}{}
+\makeoddfoot{headings}{}{\thepage}{}
+
+% Appendices macro
 \makeatletter
 \g@addto@macro{\appendices}{%
   \appendix
   \appendixpage
   \write\@auxout{%
-    \string\let\string\latex@tf@toc\string\tf@toc% Store the original `\tf@lof` file handle
-    \string\let\string\tf@toc\string\tf@app% 
-  }%
-}
-
-\g@addto@macro{\endappendices}{%
-  \write\@auxout{%
-    \string\let\string\tf@toc\string\latex@tf@toc% Rename the file handle
-  }%
-}
-
-\newcommand{\appendicesname}{Appendices}
-
-\newcommand{\listofappendices}{\bgroup%
-  \renewcommand\contentsname{List of Appendices}
-  \let\@startoc@temp\@starttoc%
-  \def\@starttoc##1{\@startoc@temp{app}}%
-  \clearpage
-  \tableofcontents* \egroup
-}
-
-\makeatother
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\makeindex
-
-
-\begin{document}
-
-\fussy
-\vbadness=10000 % badness above which bad vboxes are shown. (Default = 10000?)
-\frontmatter
-\hyphenation{}
-\DoubleSpacing
-\begin{center}
-\thispagestyle{empty}
-
-Dissertation title 
-
-\vspace{20mm}
-by\\
-\vspace{10mm}
-
-Dissertation's author
-
-\vspace{10mm}
-A dissertation submitted in partial fulfillment\\
-of the requirements for the degree of\\
-Doctor of Philosophy\\
-Department of %name of department% \\
-New York University\\
-%month, year%
-\end{center}
-\vspace{35mm}
-\begin{flushright}
-{\rule[0pt]{45mm}{0.1mm}}\\
-
-Prof. %name of main adviser%
-
-\end{flushright}
-
-\newpage
-
-\thispagestyle{empty}
-
-\begin{center} © %author name% \\ All Rights Reserved, %year% 
-\end{center}
-
-%%%%%%%%%%%%%%%%%%%%%%%%% Dedication %%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-
-\thispagestyle{empty}
-
-\chapter{Dedication}
-
-\DoubleSpacing
-
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgements %%%%%%%%%%%%%%%%%%%%
-
-\chapter{Acknowledgments}
-
-% Insert Acknowledgements here %
-
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Abstract}
-\DoubleSpacing
-\noindent
-%Insert Abstract% 
-
-\clearpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%% Table of Contents %%%%%%%%%%%%%%%%%
-
-\setcounter{tocdepth}{2} % chapters and above
-%this removes TOC listing from TOC
-
-\begin{KeepFromToc}
-\tableofcontents
-\end{KeepFromToc}
-
-\clearpage
-
-\newpage
-
-\clearpage
-
-%%%%%%%%%%%%%%%%%%%%%% List of Figures %%%%%%%%%%%%%%%%%%%
-
-\listoffigures
-
-%%%%%%%%%%%%%%%%%%%%% List of Abbreviations %%%%%%%%%%%%%%%
-
-\chapter{List of Abbreviations}
-
-\SingleSpacing
-
-\begin{longtable}{ll}
-
-\emph{ASFi} & Archivio di Stato di Firenze\\ %example of abbreviation
-\emph{ASMn} & Archivio di Stato di Mantova\\ %example of abbreviation
-\end{longtable}
-
-\clearpage
-
-%%%%%%%%%%%%%%%%%% List of Appendices %%%%%%%%%%%%%%%%%%%
-% to deactivate the list of appendices, make sure to delete the macro above.
-
-\listofappendices%
-\DoubleSpacing
-\mainmatter
-\clearpage
-\cleardoublepage  
-\phantomsection
-
-\chapter[Introduction]{Introduction}
-\input{Chapters/Introduction}
-\chapter{first chapter} %chapter name
-\input{Chapters/Chapter1.tex}
-\chapter{second chapter} %chapter name
-\input{Chapters/Chapter2.tex}    
-\chapter{third chapter} %chapter name
-\input{Chapters/Chapter3.tex}
-\chapter{fourth chapter} %chapter name
-\input{Chapters/Chapter4.tex}
-\chapter[Conclusion]{Conclusion}
-\input{Chapters/Conclusion.tex}
-
-
-%%%%%%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{appendices} 
-\chapter{Appendix A} %name of Appendix A 
-\input{Appendices/AppendixA}
-\chapter{Appendix B} %name of Appendix B
-\input{Appendices/AppendixB}
-\chapter{Appendix C} %name of Appendix C
-\input{Appendices/AppendixC}
-\chapter{Appendix D} %name of Appendix D
-\input{Appendices/AppendixD}
-\end{appendices} 
-
-\newpage
-
-\clearpage
-
-\backmatter
-
-%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{OnehalfSpace}
-\setlength{\bibitemsep}{\onelineskip}
-
-\chapter{Bibliography}
-\input{Bibliography/bibliography.tex}
-\printindex
-\end{OnehalfSpace}
-\end{document}
+    \string\let\string\latex@tf@toc\
